@@ -15,6 +15,7 @@ CREATE TABLE employees(
 
 );
 
+SELECT * FROM departments WHERE dep_id = 3;
 
 INSERT INTO departments(dep_name, dep_location, dep_phone, dep_budget)
 VALUES 
@@ -38,6 +39,8 @@ VALUES
 	('Emily', 'Johnson', 30000,5);
 
 SELECT * FROM employees;
+
+DELETE FROM employees WHERE emp_id = 8;
 	
 	
 	
