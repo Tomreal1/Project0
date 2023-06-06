@@ -4,7 +4,7 @@ public class Department {
     private int dep_id;
     private String dep_name;
     private String dep_location;
-    private int dep_phone;
+    private String dep_phone;
     private int dep_budget;
 
 
@@ -15,7 +15,7 @@ public class Department {
     }
 
 //all args
-    public Department(int dep_id, String dep_name, String dep_location, int dep_phone, int dep_budget) {
+    public Department(int dep_id, String dep_name, String dep_location, String dep_phone, int dep_budget) {
         this.dep_id = dep_id;
         this.dep_name = dep_name;
         this.dep_location = dep_location;
@@ -26,7 +26,7 @@ public class Department {
     //constructor with minus dep_id because dep_id is auto generated
 
 
-    public Department(String dep_name, String dep_location, int dep_phone, int dep_budget) {
+    public Department(String dep_name, String dep_location, String dep_phone, int dep_budget) {
         this.dep_name = dep_name;
         this.dep_location = dep_location;
         this.dep_phone = dep_phone;
@@ -60,11 +60,11 @@ public class Department {
         this.dep_location = dep_location;
     }
 
-    public int getDep_phone() {
+    public String getDep_phone() {
         return dep_phone;
     }
 
-    public void setDep_phone(int dep_phone) {
+    public void setDep_phone(String dep_phone) {
         this.dep_phone = dep_phone;
     }
 

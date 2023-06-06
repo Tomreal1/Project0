@@ -26,7 +26,7 @@ public class DepartmentDAO implements DepartmentDAOinterface{
                         rs.getInt("dep_id"),
                         rs.getString("dep_name"),
                         rs.getString("dep_location"),
-                        rs.getInt("dep_phone"),
+                        rs.getString("dep_phone"),
                         rs.getInt("dep_budget")
                 );
 
@@ -35,6 +35,7 @@ public class DepartmentDAO implements DepartmentDAOinterface{
             }
         }catch(SQLException e){
             System.out.println("ERROR GETTING DEPARTMENT");
+            e.printStackTrace();
         }
         return null;
     }
