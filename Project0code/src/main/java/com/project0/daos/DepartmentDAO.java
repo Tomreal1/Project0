@@ -12,12 +12,11 @@ public class DepartmentDAO implements DepartmentDAOinterface{
 
 
     @Override
-    public Department getDepartmentById(int get_id) {
+    public Department getDepartmentById(int dep_id) {
         try(Connection conn = ConnectionUtil.getConnection()){
-
-            String sql = "SELECT *FROM departments WHERE dep_id = ?";
+            String sql = "SELECT * FROM departments WHERE dep_id = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, get_id);
+            ps.setInt(1, dep_id);
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
 
@@ -34,11 +33,6 @@ public class DepartmentDAO implements DepartmentDAOinterface{
                 return department; //return the Department object to the user!
 
             }
-
-
-
-
-
         }catch(SQLException e){
             System.out.println("ERROR GETTING DEPARTMENT");
         }
@@ -47,6 +41,35 @@ public class DepartmentDAO implements DepartmentDAOinterface{
 
     @Override
     public boolean updateDepBudget(int dep_budget, String dep_name) {
+        try(Connection conn = ConnectionUtil.getConnection()){
+            String sql = "UPDATE departments set dep_budget = ? where dep_name= ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, dep_budget);
+            ps.setString(2, dep_name);
+            ps.executeUpdate();
+            return true;
+
+        }catch(SQLException e){
+            System.out.println("update failed");
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateDepPhone(String dep_phone, int dep_id) {
+        try(Connection conn = ConnectionUtil.getConnection()){
+            String sql = "UPDATE departments SET dep_phone = ? WHERE dep_id = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1,dep_phone);
+            ps.setInt(2,dep_id);
+            ps.executeUpdate();
+            return true;
+
+        }catch(SQLException e){
+            System.out.println("error update department phone");
+            e.printStackTrace();
+        }
         return false;
     }
 }
