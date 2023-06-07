@@ -1,4 +1,4 @@
-package com.project0;
+package com.project0.depercated;
 
 
 import java.sql.Connection;
