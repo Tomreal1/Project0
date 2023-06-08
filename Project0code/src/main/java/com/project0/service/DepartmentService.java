@@ -5,8 +5,11 @@ import com.project0.daos.DepartmentDAOinterface;
 import com.project0.models.Department;
 
 public class DepartmentService {
-    public final DepartmentDAOinterface departmentDao = new DepartmentDAO();
 
+    private DepartmentDAOinterface departmentDao;
+    public DepartmentService(DepartmentDAOinterface departmentDao){
+        this.departmentDao = departmentDao;
+    }
     public Department getDepartmentById(int dep_id) {
         if (dep_id > 0) {
             return departmentDao.getDepartmentById(dep_id);

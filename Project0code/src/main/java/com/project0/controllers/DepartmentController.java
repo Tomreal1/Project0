@@ -1,5 +1,6 @@
 package com.project0.controllers;
 
+import com.project0.daos.DepartmentDAO;
 import com.project0.models.Department;
 import com.project0.service.DepartmentService;
 import io.javalin.http.Context;
@@ -8,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 public class DepartmentController {
 
-    private static final DepartmentService departmentService = new DepartmentService();
+    private static final DepartmentService departmentService = new DepartmentService(new DepartmentDAO());
 
     private static final Logger logger = LoggerFactory.getLogger(DepartmentController.class);
 

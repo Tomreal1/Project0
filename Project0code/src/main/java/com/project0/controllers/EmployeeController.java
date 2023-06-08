@@ -47,18 +47,33 @@ public class EmployeeController {
             logger.warn("Creation failed");
         }
     }
+    public static void handleDelete(Context ctx) {
+        String idstring = ctx.pathParam("id");
+        int id = Integer.parseInt(idstring);
+        boolean deleteEmployee = employeeService.deleteEmployee(id);
+
+        if (deleteEmployee) {
+            ctx.status(200);// Set HTTP status code to 200 (successful) since the employee was successfully deleted
+            ctx.result("Employee deleted");
+            logger.info("Employee deleted with ID: " + id);
+        } else {
+            ctx.status(404); // Set HTTP status code to 404 (Not Found) if the employee was not found or delete failed
+            logger.warn("Failed to delete employee: " + id);
+        }
+    }
+
+
+
 
     // Create some method stubs here just for now
-    public static void handleGetOne(Context ctx) {
-        ctx.status(405);
+    public static void handleGetOne(Context ctx) {ctx.status(405);
     }
 
     public static void handleUpdate(Context ctx) {
+
         ctx.status(405);
     }
 
-    public static void handleDelete(Context ctx) {
-        ctx.status(405);
-    }
+
 
 }

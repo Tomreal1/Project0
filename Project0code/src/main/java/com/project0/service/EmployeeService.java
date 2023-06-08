@@ -20,5 +20,9 @@ public class EmployeeService {
 
     }
 
+    public boolean deleteEmployee(int id) {
+        return employeeDao.deleteEmployee(id);
+    }
+
 
 }

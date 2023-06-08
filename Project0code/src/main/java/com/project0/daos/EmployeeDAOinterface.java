@@ -10,5 +10,6 @@ public interface EmployeeDAOinterface {
 
     ArrayList<Employee> getAllEmployees();
 
+
     boolean deleteEmployee(int id);
 }

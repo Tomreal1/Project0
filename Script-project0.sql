@@ -41,6 +41,8 @@ VALUES
 SELECT * FROM employees;
 
 DELETE FROM employees WHERE emp_id = 8;
+
+DELETE FROM employees WHERE emp_id=11;
 	
 	
 	

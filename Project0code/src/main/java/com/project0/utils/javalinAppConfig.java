@@ -48,10 +48,10 @@ public class javalinAppConfig {
                     get(EmployeeController::handleGetAll);
                     post(EmployeeController::handleCreate);
                     put(EmployeeController::handleUpdate);
-                    delete(EmployeeController::handleDelete);
                     // What about /employees/{id}?????
                     path("{id}", () ->{
                         get(EmployeeController::handleGetOne);
+                        delete(EmployeeController::handleDelete);
                     });
                 });
                 path("departments", () ->{
