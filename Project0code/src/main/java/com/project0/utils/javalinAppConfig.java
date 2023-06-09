@@ -59,10 +59,11 @@ public class javalinAppConfig {
                     get(DepartmentController::handleGetAll);
                     post(DepartmentController::handleCreate);
                     put(DepartmentController::handleUpdate);
-                    delete(DepartmentController::handleDelete);
+                    //delete(DepartmentController::handleDelete);
                     // What about /Dpartments/{id}?????
                     path("{id}", () ->{
                         get(DepartmentController::handleGetOne);
+                        delete(DepartmentController::handleDelete);
                     });
                 });
             });

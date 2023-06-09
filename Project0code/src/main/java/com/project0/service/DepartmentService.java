@@ -43,5 +43,13 @@ public class DepartmentService {
 
         return false;
     }
+    public boolean deleteDepartment(int id){
+        return departmentDao.deleteDepartment(id);
+
+    }
+
+    public Department createNewDepartment(Department dep){
+        return departmentDao.insertDepartment(dep);
+    }
 
 }

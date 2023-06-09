@@ -5,9 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
 
-public class DepartmentServicetest {
-
-    // We're mocking the DAO to prevent calls to the actual DB
+public class DepartmentServicetest { // We're mocking the DAO to prevent calls to the actual DB
     DepartmentDAO mockDepartmentDao = mock(DepartmentDAO.class);
     DepartmentService depService = new DepartmentService(mockDepartmentDao);
 
@@ -28,7 +26,7 @@ public class DepartmentServicetest {
     }
 
     // Now, how do we go about testing for positive values?
-    // We need fake a call to the roleDAO and essentially return it with a return value
+    // We need fake a call to the departmentDAO and essentially return it with a return value
 
     @Test
     public void getDepartmentByIdPositiveInt(){

@@ -2,6 +2,7 @@ package com.project0.controllers;
 
 import com.project0.daos.DepartmentDAO;
 import com.project0.models.Department;
+import com.project0.models.Employee;
 import com.project0.service.DepartmentService;
 import io.javalin.http.Context;
 import org.slf4j.Logger;
@@ -52,8 +53,26 @@ public class DepartmentController {
         ctx.status(405);
     }
 
-    public static void handleCreate(Context ctx){
-        ctx.status(405);
+    public static void handleCreate(Context ctx) {
+        // To create a new employee from our Context body we need to essentially take it in as a JSON and convert it
+        // To an object of the appropriate class
+
+        Department dep = ctx.bodyAsClass(Department.class);
+
+        Department returnedDepartment = departmentService.createNewDepartment(dep);
+
+        // If the employee object we receive from the service is null, something has gone wrong
+
+        if (returnedDepartment != null) {
+            // This means the employee was created
+            ctx.status(201);
+            ctx.json(returnedDepartment);
+            logger.info("The following department was created: " + returnedDepartment.toString());
+        } else {
+            // What happens if it comes back null?
+            ctx.status(400);
+            logger.warn("Creation failed");
+        }
     }
 
     public static void handleUpdate(Context ctx){
@@ -78,7 +97,19 @@ public class DepartmentController {
         }
     }
 
-    public static void handleDelete(Context ctx){
-        ctx.status(405); // Method is not allowed
+    public static void handleDelete(Context ctx) {
+        String idstring = ctx.pathParam("id");
+        int id = Integer.parseInt(idstring);
+        boolean deleteEmployee = departmentService.deleteDepartment(id);
+
+        if (deleteEmployee) {
+            ctx.status(200);// Set HTTP status code to 200 (successful) since the employee was successfully deleted
+            ctx.result("department deleted");
+            logger.info("Department deleted with ID: " + id);
+        } else {
+            ctx.status(404); // Set HTTP status code to 404 (Not Found) if the employee was not found or delete failed
+            logger.warn("Failed to delete Department: " + id);
+        }
     }
+
 }

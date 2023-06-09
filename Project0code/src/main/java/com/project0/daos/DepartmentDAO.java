@@ -10,7 +10,24 @@ import java.sql.SQLException;
 
 public class DepartmentDAO implements DepartmentDAOinterface{
 
+    @Override
+    public Department insertDepartment(Department dep) {
+        try(Connection conn = ConnectionUtil.getConnection()){
+            String sql = "INSERT INTO departments(dep_name, dep_location, dep_phone, dep_budget) VALUES (?, ?, ?, ?)";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, dep.getDep_name());
+            ps.setString(2, dep.getDep_location());
+            ps.setString(3, dep.getDep_phone());
+            ps.setInt(4, dep.getDep_budget());
+            ps.executeUpdate();
+            return dep;
 
+        }catch(SQLException e){
+            System.out.println("INSERT Department FAILED");
+            e.printStackTrace();
+        }
+        return null;
+    }
     @Override
     public Department getDepartmentById(int dep_id) {
         try(Connection conn = ConnectionUtil.getConnection()){
@@ -69,6 +86,21 @@ public class DepartmentDAO implements DepartmentDAOinterface{
 
         }catch(SQLException e){
             System.out.println("error update department phone");
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deleteDepartment(int id) {
+        try(Connection conn = ConnectionUtil.getConnection()){
+            String sql = "DELETE FROM departments WHERE dep_id = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            return true;
+        }catch(SQLException e){
+            System.out.println("delete department failed");
             e.printStackTrace();
         }
         return false;
